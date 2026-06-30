@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prithik Roshan K — AI/ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0A0F1A;
+    --panel: #111A2B;
+    --panel-2: #15203570;
+    --line: #223252;
+    --text: #E7ECF4;
+    --text-dim: #8C9BB5;
+    --cyan: #4FD8C9;
+    --amber: #F2A65A;
+    --red-soft: #E8666B;
+    --radius: 10px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity:0.08;
+    pointer-events:none;
+    z-index:0;
+  }
+  .wrap{max-width:980px; margin:0 auto; padding:0 28px; position:relative; z-index:1;}
+  h1,h2,h3{font-family:'Space Grotesk', sans-serif; font-weight:600; letter-spacing:-0.01em;}
+  .mono{font-family:'JetBrains Mono', monospace;}
+  a{color:inherit; text-decoration:none;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter: blur(10px);
+    background: rgba(10,15,26,0.75);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 28px;}
+  .logo{font-family:'JetBrains Mono', monospace; font-size:14px; color:var(--cyan); letter-spacing:0.04em;}
+  .navlinks{display:flex; gap:28px; font-size:14px; color:var(--text-dim);}
+  .navlinks a:hover{color:var(--text);}
+  .nav-cta{
+    border:1px solid var(--cyan); color:var(--cyan);
+    padding:7px 16px; border-radius:6px; font-size:13px; font-family:'JetBrains Mono',monospace;
+    transition: all .2s ease;
+  }
+  .nav-cta:hover{background:var(--cyan); color:#06120F;}
+
+  /* HERO */
+  header.hero{padding:96px 0 64px; position:relative;}
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:12.5px; color:var(--cyan);
+    letter-spacing:0.14em; text-transform:uppercase; margin-bottom:18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--cyan); box-shadow:0 0 12px var(--cyan); animation:pulse 1.8s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;} 50%{opacity:.35;}}
+  .hero h1{font-size:clamp(38px,6vw,64px); line-height:1.05; max-width:760px;}
+  .hero h1 .accent{color:var(--cyan);}
+  .hero p.lead{margin-top:22px; font-size:18px; color:var(--text-dim); max-width:600px;}
+  .hero-cta{display:flex; gap:14px; margin-top:36px; flex-wrap:wrap;}
+  .btn{
+    font-family:'JetBrains Mono', monospace; font-size:14px; padding:13px 24px; border-radius:7px;
+    border:1px solid transparent; transition: all .2s ease; display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-primary{background:var(--cyan); color:#06120F; font-weight:600;}
+  .btn-primary:hover{filter:brightness(1.1); transform:translateY(-1px);}
+  .btn-ghost{border-color:var(--line); color:var(--text);}
+  .btn-ghost:hover{border-color:var(--text-dim);}
+
+  /* STAT READOUT STRIP */
+  .readout{
+    margin-top:56px; display:grid; grid-template-columns:repeat(4,1fr);
+    border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;
+    background:var(--panel);
+  }
+  .readout .stat{padding:20px 22px; border-right:1px solid var(--line);}
+  .readout .stat:last-child{border-right:none;}
+  .readout .stat .val{font-family:'Space Grotesk',sans-serif; font-size:26px; font-weight:700; color:var(--cyan);}
+  .readout .stat .lbl{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em; margin-top:4px;}
+  @media (max-width:680px){.readout{grid-template-columns:repeat(2,1fr);} .readout .stat:nth-child(2){border-right:none;}}
+
+  /* SECTION HEADERS */
+  section{padding:72px 0;}
+  .sec-head{display:flex; align-items:baseline; gap:14px; margin-bottom:36px;}
+  .sec-tag{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--amber);}
+  .sec-head h2{font-size:28px;}
+  .sec-line{flex:1; height:1px; background:var(--line);}
+
+  /* SUMMARY */
+  .summary-box{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:30px 32px; font-size:16px; color:var(--text-dim); position:relative;
+  }
+  .summary-box::before{content:'>'; position:absolute; left:14px; top:30px; color:var(--cyan); font-family:'JetBrains Mono',monospace;}
+  .summary-box{padding-left:42px;}
+
+  /* SKILLS */
+  .skill-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
+  @media (max-width:680px){.skill-grid{grid-template-columns:1fr;}}
+  .skill-card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px;}
+  .skill-card .cat{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--cyan); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:10px;}
+  .chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-size:12.5px; padding:5px 10px; border-radius:5px; background:#0d1626;
+    border:1px solid var(--line); color:var(--text-dim); font-family:'JetBrains Mono',monospace;
+  }
+
+  /* PROJECTS - model card style */
+  .project{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:28px 30px; margin-bottom:22px; position:relative; overflow:hidden;
+  }
+  .project::before{content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--cyan);}
+  .project-head{display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; margin-bottom:14px;}
+  .project-head h3{font-size:20px;}
+  .badge{
+    font-family:'JetBrains Mono',monospace; font-size:11px; padding:4px 10px; border-radius:20px;
+    border:1px solid var(--amber); color:var(--amber); white-space:nowrap;
+  }
+  .project ul{list-style:none; margin:14px 0 16px;}
+  .project li{position:relative; padding-left:18px; color:var(--text-dim); font-size:14.5px; margin-bottom:8px;}
+  .project li::before{content:'—'; position:absolute; left:0; color:var(--cyan);}
+  .stack{display:flex; flex-wrap:wrap; gap:7px; margin-top:14px;}
+
+  /* COMPETENCIES */
+  .comp-list{display:grid; gap:12px;}
+  .comp-row{display:grid; grid-template-columns:200px 1fr; gap:18px; align-items:start; padding:14px 0; border-bottom:1px solid var(--line);}
+  .comp-row:last-child{border-bottom:none;}
+  .comp-row .label{font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--cyan);}
+  .comp-row .desc{font-size:14.5px; color:var(--text-dim);}
+  @media (max-width:680px){.comp-row{grid-template-columns:1fr;}}
+
+  /* EDU / ACTIVITIES */
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  @media (max-width:780px){.two-col{grid-template-columns:1fr;}}
+  .info-card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:24px 26px;}
+  .info-card h3{font-size:16px; margin-bottom:8px;}
+  .info-card p{color:var(--text-dim); font-size:14px;}
+  .info-card ul{margin-top:12px; list-style:none;}
+  .info-card li{position:relative; padding-left:16px; font-size:14px; color:var(--text-dim); margin-bottom:9px;}
+  .info-card li::before{content:'›'; position:absolute; left:0; color:var(--amber);}
+
+  /* CONTACT / FOOTER */
+  .contact-box{
+    background:linear-gradient(135deg, #0F1B2E, #0B1422); border:1px solid var(--line); border-radius:14px;
+    padding:48px 40px; text-align:center; margin-top:20px;
+  }
+  .contact-box h2{font-size:30px; margin-bottom:12px;}
+  .contact-box p{color:var(--text-dim); max-width:480px; margin:0 auto 28px;}
+  .contact-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  footer{padding:36px 0 60px; text-align:center; color:var(--text-dim); font-size:13px; font-family:'JetBrains Mono',monospace;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">PR_K / ai-ml</div>
+    <div class="navlinks">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="nav-cta" href="https://mail.google.com/mail/?view=cm&fs=1&to=roshanprithik71@gmail.com&su=Opportunity%20for%20Prithik" target="_blank" rel="noopener">Hire me ↗</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">open to internships &amp; entry-level AI/ML roles</div>
+    <h1>Prithik Roshan K <br>builds machine learning systems <span class="accent">that ship</span>.</h1>
+    <p class="lead">Third-year EEE undergrad at SASTRA Deemed University applying supervised &amp; deep learning to healthcare, finance, and IoT-driven industrial systems — from raw sensor data to deployed predictions.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=roshanprithik71@gmail.com&su=Opportunity%20for%20Prithik" target="_blank" rel="noopener">✉ Email directly</a>
+      <a class="btn btn-ghost" href="#projects">View projects</a>
+    </div>
+
+    <div class="readout">
+      <div class="stat"><div class="val">3+</div><div class="lbl">ML Projects shipped</div></div>
+      <div class="stat"><div class="val">7.02</div><div class="lbl">CGPA / 10.0</div></div>
+      <div class="stat"><div class="val">10+</div><div class="lbl">ML/DL algorithms applied</div></div>
+      <div class="stat"><div class="val">2027</div><div class="lbl">Expected graduation</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="summary">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">01</span><h2>Summary</h2><div class="sec-line"></div></div>
+    <div class="summary-box">
+      Motivated third-year B.Tech student in Electrical &amp; Electronics Engineering with strong hands-on expertise in Python, Machine Learning, Deep Learning, and NLP. Builds supervised and unsupervised models, manages data pipelines with MySQL, and integrates predictive systems with IoT hardware. Shipped projects spanning healthcare prediction, financial analytics, and industrial fault detection — looking to bring that range to a real AI/ML engineering team.
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">02</span><h2>Projects</h2><div class="sec-line"></div></div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Predictive Maintenance — Electrical Appliances (ML + IoT)</h3>
+        <span class="badge">real-time inference</span>
+      </div>
+      <ul>
+        <li>IoT-integrated ML system predicting appliance failure in real time, cutting unplanned downtime.</li>
+        <li>Collected &amp; preprocessed live sensor streams — temperature, vibration, current — with Python and Pandas.</li>
+        <li>Benchmarked Random Forest, SVM, and Logistic Regression for fault classification at high accuracy.</li>
+        <li>Wired the trained model into IoT hardware for automated, real-time alerting.</li>
+      </ul>
+      <div class="stack">
+        <span class="chip">Python</span><span class="chip">Scikit-learn</span><span class="chip">IoT Sensors</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">MATLAB</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Bank Loan Deposit Prediction</h3>
+        <span class="badge">binary classification</span>
+      </div>
+      <ul>
+        <li>Predicts customer subscription to term deposits from demographic and campaign data.</li>
+        <li>Handled class imbalance with SMOTE; ran full EDA and feature engineering passes.</li>
+        <li>Benchmarked Logistic Regression, Decision Tree, Random Forest, and Gradient Boosting — selected the best via cross-validation.</li>
+        <li>Backed the pipeline with structured MySQL storage for efficient retrieval.</li>
+      </ul>
+      <div class="stack">
+        <span class="chip">Python</span><span class="chip">Scikit-learn</span><span class="chip">MySQL</span><span class="chip">Pandas</span><span class="chip">Matplotlib</span><span class="chip">Seaborn</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Lung Cancer Prediction</h3>
+        <span class="badge">healthcare ML</span>
+      </div>
+      <ul>
+        <li>Binary classifier estimating lung cancer likelihood from clinical and lifestyle data.</li>
+        <li>Cleaned data, treated missing values and outliers, and selected features for robustness.</li>
+        <li>Compared SVM, Random Forest, KNN, and Logistic Regression on Precision, Recall, F1, and ROC-AUC.</li>
+        <li>Explored Keras/TensorFlow deep learning architectures to push accuracy further.</li>
+      </ul>
+      <div class="stack">
+        <span class="chip">Python</span><span class="chip">TensorFlow/Keras</span><span class="chip">Scikit-learn</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Matplotlib</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">03</span><h2>Skills &amp; Stack</h2><div class="sec-line"></div></div>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <div class="cat">Programming</div>
+        <div class="chips"><span class="chip">Python</span><span class="chip">Java</span><span class="chip">C</span><span class="chip">C++</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="cat">Machine Learning</div>
+        <div class="chips"><span class="chip">SVM</span><span class="chip">Random Forest</span><span class="chip">Logistic Regression</span><span class="chip">KNN</span><span class="chip">Gradient Boosting</span><span class="chip">Clustering</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="cat">Deep Learning</div>
+        <div class="chips"><span class="chip">ANN</span><span class="chip">CNN</span><span class="chip">RNN</span><span class="chip">Transfer Learning</span><span class="chip">Keras</span><span class="chip">TensorFlow</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="cat">NLP</div>
+        <div class="chips"><span class="chip">Tokenization</span><span class="chip">TF-IDF</span><span class="chip">Word Embeddings</span><span class="chip">Sentiment Analysis</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="cat">Data &amp; Databases</div>
+        <div class="chips"><span class="chip">MySQL</span><span class="chip">SQL</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Matplotlib</span><span class="chip">Seaborn</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="cat">Engineering &amp; Tools</div>
+        <div class="chips"><span class="chip">MATLAB</span><span class="chip">LabVIEW</span><span class="chip">LTspice</span><span class="chip">Eagle PCB</span><span class="chip">Git</span><span class="chip">VS Code</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="competencies">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">04</span><h2>Core Competencies</h2><div class="sec-line"></div></div>
+    <div class="comp-list">
+      <div class="comp-row"><div class="label">Supervised</div><div class="desc">Linear &amp; Logistic Regression, SVM, Decision Trees, Random Forest, Gradient Boosting, KNN — end-to-end model building and evaluation.</div></div>
+      <div class="comp-row"><div class="label">Unsupervised</div><div class="desc">K-Means, DBSCAN, Hierarchical Clustering, PCA for dimensionality reduction.</div></div>
+      <div class="comp-row"><div class="label">Deep Learning</div><div class="desc">ANN, CNN, RNN architectures via Keras and TensorFlow for classification and pattern recognition.</div></div>
+      <div class="comp-row"><div class="label">NLP</div><div class="desc">Text preprocessing pipelines, TF-IDF vectorization, word embeddings, sentiment analysis.</div></div>
+      <div class="comp-row"><div class="label">Evaluation</div><div class="desc">Cross-validation, confusion matrix, Precision/Recall/F1, ROC-AUC, GridSearchCV tuning.</div></div>
+      <div class="comp-row"><div class="label">Databases</div><div class="desc">MySQL schema design, SQL querying, integration with ML pipelines.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">05</span><h2>Education &amp; Activities</h2><div class="sec-line"></div></div>
+    <div class="two-col">
+      <div class="info-card">
+        <h3>B.Tech, Electrical &amp; Electronics Engineering</h3>
+        <p>SASTRA Deemed University, Thanjavur, Tamil Nadu<br>2023 – 2027 (Expected) · CGPA 7.02 / 10.0</p>
+        <ul>
+          <li>Coursework spanning power systems, smart grid infrastructure, renewable energy, embedded systems.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Leadership &amp; Activities</h3>
+        <ul>
+          <li>Event organizer, IEEE Student Chapter — planned large-scale technical events and seminars.</li>
+          <li>Hands-on workshops in automation, microcontrollers, embedded systems.</li>
+          <li>Led cross-functional teams during institutional technical fests.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-box">
+      <h2>Let's build something predictive.</h2>
+      <p>Open to AI/ML internships and entry-level engineering roles. The fastest way to reach me is email — it opens straight into a pre-filled message, no copy-pasting required.</p>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=roshanprithik71@gmail.com&su=Opportunity%20for%20Prithik" target="_blank" rel="noopener">✉ Compose email</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Trichy, Tamil Nadu, India · Tamil (Native) · English (Fluent) · Hindi (Fluent) · French (Basic)
+</footer>
+
+</body>
+</html>
